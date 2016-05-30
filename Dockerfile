@@ -6,8 +6,7 @@ ENV VERSION=1.0.0
 ENV MYSQL_USER=root
 ENV MYSQL_HOST=127.0.0.1
 ENV MYSQL_PORT=3306
-ENV KAFKA_HOST=127.0.0.1
-ENV KAFKA_PORT=9092
+ENV KAFKA_HOSTS=127.0.0.1:9092
 ENV LOG_LEVEL=WARN
 ENV OPTIONAL_ARGS=
 
@@ -19,4 +18,4 @@ RUN mv maxwell-${VERSION} ${VERSION}
 
 WORKDIR /opt/maxwell/${VERSION}
 
-CMD bin/maxwell --user=$MYSQL_USER --password=$MYSQL_PASSWORD --host=$MYSQL_HOST --port=$MYSQL_PORT --producer=kafka --kafka.bootstrap.servers=$KAFKA_HOST:$KAFKA_PORT --log_level=$LOG_LEVEL $OPTIONAL_ARGS
+CMD bin/maxwell --user=$MYSQL_USER --password=$MYSQL_PASSWORD --host=$MYSQL_HOST --port=$MYSQL_PORT --producer=kafka --kafka.bootstrap.servers=$KAFKA_HOSTS --log_level=$LOG_LEVEL $OPTIONAL_ARGS
